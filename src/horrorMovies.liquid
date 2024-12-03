@@ -1,0 +1,31 @@
+---
+layout: layouts/default.liquid
+pagination:
+  data: Movie
+  size: 1
+  alias: horror
+title: Horror Movie Facts
+---
+
+<div class="d-flex justify-content-center">
+  <h1>{{ title }}</h1>
+</div>
+
+<hr>
+{% comment %} enter into a for loop to render content to the cards {% endcomment %}
+{% for horror in pagination.items %}
+  <div class="d-flex justify-content-center">
+    <div class="card mal" style="width: 20rem;">
+      <img src="http://localhost:1337/{{ horror.Image.url }}" class="card-img-top" alt="{{ horror.Name }}">
+      <div class="card-body">
+        <h3>{{ horror.Name }}</h3>
+        <p>{{ horror.Description }}</p>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<hr>
+<div class="d-flex justify-content-center">
+  {% include 'partials/pagination.liquid' %}
+</div>
