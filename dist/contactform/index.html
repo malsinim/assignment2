@@ -55,24 +55,26 @@
 
       <div class="card__body">
 
-        <h1>Contact me </h1>
+        
+<h1>Contact me</h1>
+
 <!-- Contact Form -->
 <div id="form-container">
   <form id="contact-form">
     <label for="name">Your Name:</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
     <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
 
     <label for="email">E-mail Address:</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
     <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject" required>
+    <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
 
     <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea>
+    <textarea id="message" name="message" rows="4" placeholder="Write your message here" required></textarea>
 
     <button type="submit">Submit</button>
   </form>
@@ -101,7 +103,6 @@
       message: document.getElementById('message').value,
     };
 
-    // Send data to serverless function
     try {
       const response = await fetch('/.netlify/functions/contactform', {
         method: 'POST',
@@ -109,7 +110,6 @@
         body: JSON.stringify(formData),
       });
 
-      // Handle response
       if (response.ok) {
         document.getElementById('response-message').textContent =
           "Thanks for reaching out. We'll get back to you soon!";

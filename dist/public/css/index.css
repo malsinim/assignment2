@@ -106,3 +106,89 @@ body {
   background-color: #fff;
   border-color: #dee2e6;
 }
+
+/* Contact Form Styles - Isolated to prevent overlap */
+#form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+#form-container h1 {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  color: #2F4F4F;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+/* Style form input fields */
+#contact-form label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="tel"],
+#contact-form input[type="email"],
+#contact-form textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="tel"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+}
+
+/* Button Submit */
+#contact-form button[type="submit"] {
+  padding: 15px;
+  font-weight: bold;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+#contact-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#contact-form button[type="submit"]:active {
+  background-color: #004085;
+}
+
+/* Spinner and Response Message */
+#spinner {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  color: #007BFF;
+  margin-top: 20px;
+}
+
+#response-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: green;
+  padding-top: 20px;
+}
