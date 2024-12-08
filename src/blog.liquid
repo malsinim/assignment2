@@ -1,7 +1,7 @@
 ---
 layout: layouts/default.liquid
 pagination:
-  data: Post
+  data: Blog
   size: 1
   alias: post
 title: My Blog
@@ -16,46 +16,23 @@ title: My Blog
   {% for post in pagination.items %}
     <div class="card">
       <div class="card__header">
-       
-        <img src="http://localhost:1337{{ post.ThumbNail.url }}" alt="card__image" class="card__image" width="900">
+        {% if post.fields.image.fields.file.url %}
+          <img src="{{ post.fields.image.fields.file.url }}" alt="card__image" class="card__image" width="900">
+        {% endif %}
       </div>
       <div class="card__body">
-        
-        <h4>{{ post.Title }}</h4>
-        <button class="more-info-button" data-id="{{ post.id }}">Read More</button>
-        <div id="content" class="hidden">
-          {% comment %} got help from chatgpt for the for loop {% endcomment %}
-          {% comment %} enter into a for loop to get into post's Content array because it is nested {% endcomment %}
-          {% for contentBlock in post.Content %}
-            {% comment %} if the content type heading {% endcomment %}
-            {% if contentBlock.type == 'heading' %}
-              {% comment %} render the text of the first child element as h3 {% endcomment %}
-              <h3>{{ contentBlock.children[0].text }}</h3>
-              {% comment %} else if the content type is a paragraph {% endcomment %}
-            {% elsif contentBlock.type == 'paragraph' %}
-              {% comment %} ender the text of the first child element as p {% endcomment %}
-              <p>{{ contentBlock.children[0].text }}</p>
-            {% endif %}
-          {% endfor %}
-
-        
-          {% comment %} for the screenshots to render in the blog (got help from chatgpt) {% endcomment %}
-          {% if post.Screenshots %}
-            <div class="screenshots">
-              {% for screenshot in post.Screenshots %}
-                {% comment %} render the image using the url {% endcomment %}
-                <img src="http://localhost:1337{{ screenshot.url }}" alt="{{ screenshot.alternativeText }}" class="screenshot-image">
-              {% endfor %}
-            </div>
-          {% endif %}
-      </div>
+        <h4>{{ post.fields.title }}</h4>
+        <button class="more-info-button" data-id="content-{{ forloop.index }}">Read More</button>
+        <div id="content-{{ forloop.index }}" class="hidden">
+          <p>{{ post.fields.content }}</p>
+        </div>
       </div>
       <div class="card__footer">
         <div class="user">
           <img src="/public/img/user.jpeg" alt="user__image" class="user__image">
           <div class="user__info">
             <h5>Malsini Masachchige</h5>
-            <small>{{ post.Date }}</small>
+            <small>{{ post.fields.date }}</small>
           </div>
         </div>
       </div>
@@ -63,36 +40,25 @@ title: My Blog
   {% endfor %}
 </div>
 
-
 <hr>
 <div class="d-flex justify-content-center">
   {% include 'partials/pagination.liquid' %}
 </div>
 
-{% comment %}  used JavaScript to hide/display content in blog using a button click event {% endcomment %}
-{% comment %} used previous class work for reference, and got help from chatgpt to fix some errors{% endcomment %}
-
 <script>
-// wait until content is loaded before executing the script 
+// Wait until the DOM content is loaded
 document.addEventListener("DOMContentLoaded", () => {
-  // select all btns with the name more info button
   const buttons = document.querySelectorAll(".more-info-button");
   buttons.forEach((button) => {
-    // add an event for the button when clicked 
     button.addEventListener("click", (event) => {
-      // get the content of the button with the id 'content'
-      const content = document.getElementById("content");
-      // if content has a class named hidden
+      const contentId = event.target.getAttribute("data-id");
+      const content = document.getElementById(contentId);
       if (content.classList.contains("hidden")) {
-        // remove the hidden class to display content
         content.classList.remove("hidden");
-        // chnage the text of the button to 'read less'
-        button.textContent = "Read Less"; 
+        button.textContent = "Read Less";
       } else {
-        // else if the conten does not have a hidden class, add it so content is hidden
         content.classList.add("hidden");
-        // change the button's text to 'read more'
-        button.textContent = "Read More"; 
+        button.textContent = "Read More";
       }
     });
   });

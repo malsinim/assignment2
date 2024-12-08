@@ -22,6 +22,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.setTemplateFormats(["md","liquid"]);
     eleventyConfig.addPassthroughCopy("src/public");
     eleventyConfig.addWatchTarget("src/public/css");
+    require('dotenv').config();
     
     // Return your Object options:
     return {

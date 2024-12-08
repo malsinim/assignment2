@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Blog</title>   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href ="/public/css/index.css" rel="stylesheet">
+    
+  </head>
+  <div>
+    <body>
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " href="/index">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/README">README</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/instructions">Assignment 2 instructions</a>
+              </li>
+              <li class="nav-item"></li>
+                <a class="nav-link " href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/blog">My blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/horrorMovies">My Custom Content</a>
+              </li>
+            
+            </ul>
+            <form class="d-flex" action ="/blog">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+              <select  name="category">
+                  <option value="">All</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Labs">Labs</option>
+              </select>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+</nav>
+
+      <div class="card__body">
+
+        
+
+<div class="d-flex justify-content-center">
+  <h1>My Blog</h1>
+</div>
+
+<div class="container">
+  
+    <div class="card">
+      <div class="card__header">
+        
+          <img src="//images.ctfassets.net/p7pi1vsc00ha/hoxTVD8ZLj5hQK52AGjmr/7a70c8898ba63b14464bbf2f20ee141e/cobol.jpg" alt="card__image" class="card__image" width="900">
+        
+      </div>
+      <div class="card__body">
+        <h4>Why I’m Interested in COBOL and Frameworks</h4>
+        <button class="more-info-button" data-id="content-1">Read More</button>
+        <div id="content-1" class="hidden">
+          <p>In today’s rapidly evolving tech world, diving into a classic like COBOL might seem unconventional, but for me, it’s a fascinating journey. COBOL’s long-standing presence in industries like banking, insurance, and government reflects its reliability and resilience. Its ability to process massive amounts of data with precision makes it invaluable in sectors where stability is critical.
+
+What I appreciate about COBOL is its straightforward and business-oriented syntax. Unlike modern languages that often prioritize complexity, COBOL was designed to be readable and maintainable, which aligns well with my preference for structured, logical programming.
+
+Frameworks in the COBOL ecosystem further enhance its usability by modernizing workflows and integrating with contemporary systems. Tools that allow COBOL applications to interface with APIs or work in cloud environments excite me because they bring a timeless language into the future.
+
+By exploring COBOL and its frameworks, I feel connected to the roots of programming while addressing today’s demands. It’s this blend of tradition and innovation that keeps me motivated and eager to learn more.</p>
+        </div>
+      </div>
+      <div class="card__footer">
+        <div class="user">
+          <img src="/public/img/user.jpeg" alt="user__image" class="user__image">
+          <div class="user__info">
+            <h5>Malsini Masachchige</h5>
+            <small>2024-12-08T00:00-05:00</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+<hr>
+<div class="d-flex justify-content-center">
+  <nav aria-label="HorrorMovie Facts page navigation">
+    <ul class="pagination">
+        
+        
+        <li class="page-item disabled">
+            
+                <a class="page-link" href="#" aria-disabled="true">Previous</a>
+            
+        </li>
+            
+            <li class="page-item active">
+                <a class="page-link" href="/blog/">
+                    Page 1
+                </a>
+            </li>
+            
+            <li class="page-item ">
+                <a class="page-link" href="/blog/1/">
+                    Page 2
+                </a>
+            </li>
+        
+        <li class="page-item ">
+            
+                <a class="page-link" href="/blog/1/">Next</a>
+            
+        </li>
+    </ul>
+</nav>
+
+</div>
+
+<script>
+// Wait until the DOM content is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".more-info-button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const contentId = event.target.getAttribute("data-id");
+      const content = document.getElementById(contentId);
+      if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        button.textContent = "Read Less";
+      } else {
+        content.classList.add("hidden");
+        button.textContent = "Read More";
+      }
+    });
+  });
+});
+</script>
+
+
+      </div>
+    
+      
+<div class="d-flex justify-content-center">
+    <div class="mal">
+        
+        <p>&copy; <span id="year"></span> Malsini Masachchige.</p>
+       
+        <a class ="nav-link"href="/terms-and-conditions">Terms and Conditions</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      
+    </body>
+  </div>
+</html>

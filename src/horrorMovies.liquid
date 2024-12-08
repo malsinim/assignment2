@@ -12,14 +12,18 @@ title: Horror Movie Facts
 </div>
 
 <hr>
-{% comment %} enter into a for loop to render content to the cards {% endcomment %}
+{% comment %} Render cards for each horror movie item {% endcomment %}
 {% for horror in pagination.items %}
   <div class="d-flex justify-content-center">
     <div class="card mal" style="width: 20rem;">
-      <img src="http://localhost:1337/{{ horror.Image.url }}" class="card-img-top" alt="{{ horror.Name }}">
+      {% if horror.fields.image.fields.file.url %}
+        <img src="{{ horror.fields.image.fields.file.url }}" class="card-img-top" alt="{{ horror.fields.name }}">
+      {% else %}
+        <img src="/public/img/placeholder.png" class="card-img-top" alt="Placeholder">
+      {% endif %}
       <div class="card-body">
-        <h3>{{ horror.Name }}</h3>
-        <p>{{ horror.Description }}</p>
+        <h3>{{ horror.fields.name }}</h3>
+        <p>{{ horror.fields.description }}</p>
       </div>
     </div>
   </div>
