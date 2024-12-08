@@ -1,0 +1,71 @@
+<!-- Contact Form -->
+<div id="form-container">
+  <form id="contact-form">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="email">E-mail Address:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Spinner -->
+  <div id="spinner" class="hidden">Sending...</div>
+
+  <!-- Response Message -->
+  <div id="response-message" class="hidden"></div>
+</div>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Hide form, show spinner
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('spinner').classList.remove('hidden');
+
+    // Collect form data
+    const formData = {
+      name: document.getElementById('name').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value,
+    };
+
+    // Send data to serverless function
+    try {
+      const response = await fetch('/.netlify/functions/contactform', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      // Handle response
+      if (response.ok) {
+        document.getElementById('response-message').textContent =
+          "Thanks for reaching out. We'll get back to you soon!";
+      } else {
+        document.getElementById('response-message').textContent =
+          'An error occurred. Please try again.';
+      }
+    } catch (error) {
+      document.getElementById('response-message').textContent =
+        'An error occurred. Please try again.';
+    } finally {
+      // Hide spinner, show response message
+      document.getElementById('spinner').classList.add('hidden');
+      document.getElementById('response-message').classList.remove('hidden');
+    }
+  });
+</script>
