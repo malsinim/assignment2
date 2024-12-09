@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     `;
 
     const msg = {
-      to: ['malsinimasachchige@gmail.com', 'mohammed.h.p2003@gmail.com'],
+      to: ['malsinimasachchige@gmail.com', 'adam.kunz+inft@durhamcollege.ca'],
       from: 'malsinimasachchige@gmail.com',
       subject: `[This is an automated message] ${subject}`,
       text: emailContent,
