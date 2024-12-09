@@ -1,11 +1,16 @@
-// .netlify/functions/contactform.js
-
 const sgMail = require('@sendgrid/mail');
 
 // Set your SendGrid API Key
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ message: 'Method not allowed' }),
+    };
+  }
+
   try {
     const data = JSON.parse(event.body);
 
@@ -22,7 +27,7 @@ exports.handler = async (event, context) => {
     `;
 
     const msg = {
-      to: ['malsini.masachchige@dcmail.ca'], //, 'adam.kunz+somealias@dc-uoit.ca'
+      to: 'malsini.masachchige@dcmail.ca',
       from: 'malsini.masachchige@dcmail.ca',
       subject: `[Auto Message] ${subject}`,
       text: emailContent,
@@ -36,11 +41,11 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ message: 'Email sent successfully!' }),
     };
   } catch (err) {
-    console.error('Email sending error:', err);
+    console.error('Email sending error:', err.message);
 
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Server error while sending the email.' }),
+      body: JSON.stringify({ message: 'Server error', error: err.message }),
     };
   }
 };
