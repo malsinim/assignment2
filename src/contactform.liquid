@@ -64,10 +64,12 @@ title: Contact me
       } else {
         document.getElementById('response-message').textContent =
           'An error occurred. Please try again.';
+          console.error('Error:', error);
       }
     } catch (error) {
       document.getElementById('response-message').textContent =
         'An error occurred. Please try again.';
+        console.error('Error:', error);
     } finally {
       // Hide spinner, show response message
       document.getElementById('spinner').classList.add('hidden');
