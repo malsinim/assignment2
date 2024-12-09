@@ -108,50 +108,84 @@ body {
 }
 
 /* Contact Form Styles - Isolated to prevent overlap */
+/* Contact Form Styling */
 #form-container {
-  max-width: 500px;
+  max-width: 600px;
   margin: 2rem auto;
-  padding: 20px;
+  padding: 2rem;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-#form-container h1 {
-  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-family: 'Quicksand', sans-serif;
-  color: #2F4F4F;
-  font-weight: bold;
-  padding-bottom: 1rem;
 }
 
-/* Style form input fields */
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 #contact-form label {
   font-weight: bold;
-  color: #555;
-  margin-bottom: 5px;
+  color: #333;
 }
 
 #contact-form input[type="text"],
 #contact-form input[type="tel"],
 #contact-form input[type="email"],
-#contact-form textarea {
+#contact-form textarea,
+#contact-form button {
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-family: Arial, sans-serif;
-  transition: border-color 0.3s ease;
+  border-radius: 5px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 #contact-form input[type="text"]:focus,
 #contact-form input[type="tel"]:focus,
 #contact-form input[type="email"]:focus,
 #contact-form textarea:focus {
-  border-color: #66afe9;
-  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+  outline: none;
+  border-color: #666;
+  box-shadow: 0 0 5px rgba(0, 128, 255, 0.3);
+}
+
+#contact-form button[type="submit"] {
+  background: #007BFF;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#contact-form button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+#contact-form button[type="submit"]:active {
+  background: #004085;
+}
+
+#form-container textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+}
+
+/* Responsive Form */
+@media (max-width: 600px) {
+  #form-container {
+    padding: 1rem;
+  }
+
+  #contact-form input[type="text"],
+  #contact-form input[type="tel"],
+  #contact-form input[type="email"],
+  #contact-form textarea,
+  #contact-form button[type="submit"] {
+    font-size: 14px;
+  }
 }
 
 /* Button Submit */
