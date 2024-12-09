@@ -107,10 +107,9 @@ body {
   border-color: #dee2e6;
 }
 
-/* Contact Form Styles - Isolated to prevent overlap */
 /* Contact Form Styling */
 #form-container {
-  max-width: 1000px;
+  width: 3500px;
   margin: 2rem auto;
   padding: 2rem;
   background: #fff;
