@@ -209,19 +209,12 @@ body {
   background-color: #004085;
 }
 
-/* Spinner and Response Message */
-#spinner {
-  text-align: center;
-  font-weight: bold;
-  font-size: 24px;
-  color: #007BFF;
-  margin-top: 20px;
-}
+/*  Response Message */
 
 #response-message {
   text-align: center;
   font-weight: bold;
   font-size: 20px;
-  color: green;
+  color:  #2F4F4F;
   padding-top: 20px;
 }
