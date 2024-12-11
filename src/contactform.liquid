@@ -53,28 +53,32 @@ title: Contact me
     };
 
     try {
-      const response = await fetch('/.netlify/functions/contactform', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+  // send a POST request to the contact form
+  const response = await fetch('/.netlify/functions/contactform', {
+    method: 'POST', 
+    // set the content type to json
+    headers: { 'Content-Type': 'application/json' }, 
+    // convert form data to a json string for the request body
+    body: JSON.stringify(formData), 
+    });
 
-      if (response.ok) {
-        document.getElementById('response-message').textContent =
-          "Thanks for reaching out. We'll get back to you soon!";
-      } else {
-        document.getElementById('response-message').textContent =
-          'An error occurred. Please try again.';
-          console.error('Error:', error);
-      }
-    } catch (error) {
-      document.getElementById('response-message').textContent =
-        'An error occurred. Please try again.';
-        console.error('Error:', error);
-    } finally {
-      // Hide spinner, show response message
-      document.getElementById('spinner').classList.add('hidden');
-      document.getElementById('response-message').classList.remove('hidden');
+    // check if the response status is good
+    if (response.ok) {
+      // display a success message to the user
+      document.getElementById('response-message').textContent = "Thanks for reaching out. We'll get back to you soon!";
+    } else {
+      // display an error message if the response is not good
+      document.getElementById('response-message').textContent = 'An error occurred. Please try again.';
+      // log the error 
+      console.error('Error:', error); 
     }
-  });
-</script>
+  } catch (error) {
+    // handle any errors that occur during the fetch request
+    // display an error message to the user
+    document.getElementById('response-message').textContent = 'An error occurred. Please try again.'; 
+    console.error('Error:', error); 
+  } finally {
+    // hide the spinner and show the response message
+    document.getElementById('spinner').classList.add('hidden');
+    document.getElementById('response-message').classList.remove('hidden'); 
+  }

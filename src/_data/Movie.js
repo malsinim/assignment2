@@ -4,13 +4,13 @@ const client = require('contentful').createClient({
 });
 
 module.exports = async function() {
-  const entriesMyBlog = await client.getEntries({
+  const movieEntries = await client.getEntries({
     content_type: 'movie'
   });
  
  
 
-  return entriesMyBlog.items;
+  return movieEntries.items;
 };
 
 
