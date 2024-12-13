@@ -22,33 +22,20 @@
               <li class="nav-item">
                 <a class="nav-link " href="/index">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/README">README</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/contactform">Contact me</a>
-              </li>
               <li class="nav-item"></li>
                 <a class="nav-link " href="/about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/blog">My blog</a>
+                <a class="nav-link" href="/lab">My Labs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/horrorMovies">My Custom Content</a>
+                <a class="nav-link" href="">My Class Work</a>
               </li>
-            
+              <li class="nav-item">
+                <a class="nav-link" href="/contactform">Contact me</a>
+              </li>
             </ul>
-            <form class="d-flex" action ="/blog">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
-              <select  name="category">
-                  <option value="">All</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Labs">Labs</option>
-              </select>
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
 </nav>
@@ -79,10 +66,11 @@
         <textarea id="message" name="message" rows="4" placeholder="Write your message here" required></textarea>
 
         <button type="submit">Submit</button>
+        
     </form>
     
     <!-- Spinner -->
-    <div id="spinner" class="hidden">Sending...</div>
+    <div id="spinner" class="spinner-border hidden"></div>
     <!-- Response Message -->
     <div id="response-message" class="hidden"></div>
 </div>
@@ -103,24 +91,30 @@
       subject: document.getElementById('subject').value,
       message: document.getElementById('message').value,
     };
-
+    
     try {
+      // send a POST request to the contact form API endpoint with the form data
       const response = await fetch('/.netlify/functions/contactform', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+      // if response is ok, display a success message
       if (response.ok) {
         document.getElementById('response-message').textContent =
           "Thanks for reaching out. We'll get back to you soon!";
       } else {
+        // if response is not ok, display error message
         document.getElementById('response-message').textContent =
           'An error occurred. Please try again.';
+          console.error('Error:', error);
       }
-    } catch (error) {
-      document.getElementById('response-message').textContent =
-        'An error occurred. Please try again.';
+    } 
+    // handle any errors that occur
+    catch (error) {
+      // display an error message
+      document.getElementById('response-message').textContent ='An error occurred. Please try again.';
+        console.error('Error:', error);
     } finally {
       // Hide spinner, show response message
       document.getElementById('spinner').classList.add('hidden');
